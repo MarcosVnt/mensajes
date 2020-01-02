@@ -15,8 +15,8 @@ git commit -m "Inicio Comit"
 
 creamos repositorio
 
-git remote add orign pego url degit http://
-
+git remote add origin pego url degit http://
+git
 
 auth laravel
 _________________
