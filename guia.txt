@@ -1,0 +1,124 @@
+install laravel
+
+composer create-project --prefer-dist laravel/laravel mensajes
+composer create-project --prefer-dist laravel/laravel sim6
+
+php artisan key:generate
+
+
+ojo vagrant
+
+
+git init
+git add -A 
+git commit -m "Inicio Comit"
+
+creamos repositorio
+
+git remote add orign pego url degit http://
+
+
+auth laravel
+_________________
+
+composer require laravel/ui --dev
+
+php artisan ui vue --auth 
+
+
+npm install
+
+npm run dev
+
+__________bootstrap vue
+
+npm install vue bootstrap-vue bootstrap
+
+
+app.js
+_________________
+https://www.itechempires.com/2019/09/configure-bootstrap-vue-react-in-laravel-6-with-frontend-scaffolding/
+php artisan ui bootstrap
+
+npm install && npm run dev
+
+
+https://laravel.com/docs/6.x/frontend
+composer require laravel/ui --dev
+CD ..
+
+php artisan ui bootstrap --auth
+php artisan ui vue --auth
+php artisan ui react --auth
+
+php artisan ui:auth
+
+
+INSTALANDO bootstrap-vue
+__________________________________________
+https://bootstrap-vue.js.org/docs
+https://webpack.js.org/guides/asset-management/#loading-css
+
+
+ojo en bootstrap.js 
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
+https://bootstrap-vue.js.org/docs/components/alert
+impportar componet alert
+
+en resources/view/auth/login.blade.php
+
+
+quitamos el css de app.blade.php
+
+
+en login.blade  cambiamos continer por b-container y b-row 
+b-containers
+
+
+clase 10
+....................
+
+git add -add
+git commit -m "logiin ...2"
+git push origin master
+
+    pon clave y container
+
+
+mysql -u root -p 
+
+arranco xampp
+creo db  mensajes2
+
+cambio en appserviceprovider
+
+    Schema::defaultStringLength(191);
+
+
+
+
+
+php artisan migrate --seed
+
+php artisan make:seeder UsersTableSeeder
+config .env
+
+
+
+metodo logout  .. app.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
