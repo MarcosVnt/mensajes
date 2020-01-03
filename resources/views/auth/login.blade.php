@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                        <b-alert variant="success" show>Success Alert</b-alert>
+
+                        
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
