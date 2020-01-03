@@ -101,6 +101,7 @@ mysql -u root -p
 arranco xampp
 creo db  mensajes2
 
+
 cambio en appserviceprovider
 
     Schema::defaultStringLength(191);
@@ -119,6 +120,11 @@ config .env
 metodo logout  .. app.js
 
 
+
+clase 14 
+componentes
+
+contacto representa los items de la izuierda
 
 
 
