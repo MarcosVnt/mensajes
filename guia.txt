@@ -15,8 +15,12 @@ git commit -m "Inicio Comit"
 
 creamos repositorio
 
-git remote add origin pego url degit http://
-git
+git remote add origin https://github.com/marcosVisualnt/mensajes.git
+
+git push origin master -f
+
+
+
 
 auth laravel
 _________________
@@ -75,6 +79,11 @@ quitamos el css de app.blade.php
 
 en login.blade  cambiamos continer por b-container y b-row 
 b-containers
+
+
+en app.blade cambiamos a componentes vue
+
+
 
 
 clase 10

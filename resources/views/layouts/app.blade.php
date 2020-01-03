@@ -21,6 +21,9 @@
  --}}
     </head>
 <body>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
     <div id="app">
             <b-navbar toggleable type="dark" variant="primary">
                     <b-navbar-toggle target="nav_text_collapse"></b-navbar-toggle>

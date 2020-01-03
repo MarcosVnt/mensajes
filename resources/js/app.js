@@ -33,4 +33,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    methods: {
+        logout() {
+            //alert('aaaaaaaaaaa');
+            document.getElementById('logout-form').submit();
+
+        }
+    }
 });
