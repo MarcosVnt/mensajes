@@ -30,8 +30,7 @@
                 <active-conversation-component></active-conversation-component>
             </b-col>
         </b-row>
-    </b-container>
-@endsection
+</b-container>
 
 
 @endsection

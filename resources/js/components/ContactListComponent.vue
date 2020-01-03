@@ -16,7 +16,6 @@
         </b-list-group>  
     </div>
 </template>
-
 <script>
     export default {
         //variable viene del exterior

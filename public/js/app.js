@@ -1969,7 +1969,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   //variable viene del exterior
   data: function data() {
@@ -67404,7 +67403,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("b-card", [
                     _vm._v(
-                      "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante\n    sollicitudin."
+                      "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante\n                sollicitudin."
                     )
                   ])
                 ],
@@ -67431,7 +67430,9 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("b-card", [
-                    _vm._v("Donec lacinia\n    congue felis in faucibus.")
+                    _vm._v(
+                      "Donec lacinia\n                congue felis in faucibus."
+                    )
                   ])
                 ],
                 1
@@ -67504,7 +67505,7 @@ var render = function() {
           _c("hr"),
           _vm._v(" "),
           _c("b-form-checkbox", [
-            _vm._v("\n                Desactivar notificaciones\n            ")
+            _vm._v("\n            Desactivar notificaciones\n        ")
           ])
         ],
         1
@@ -79839,9 +79840,9 @@ Vue.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('contact-component', __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue"));
-Vue.component('contact-list-component', __webpack_require__(/*! ./components/ContactListComponent.vue */ "./resources/js/components/ContactListComponent.vue"));
-Vue.component('active-conversation-component', __webpack_require__(/*! ./components/ActiveConversationComponent.vue */ "./resources/js/components/ActiveConversationComponent.vue"));
+Vue.component('contact-component', __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue")["default"]);
+Vue.component('contact-list-component', __webpack_require__(/*! ./components/ContactListComponent.vue */ "./resources/js/components/ContactListComponent.vue")["default"]);
+Vue.component('active-conversation-component', __webpack_require__(/*! ./components/ActiveConversationComponent.vue */ "./resources/js/components/ActiveConversationComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
