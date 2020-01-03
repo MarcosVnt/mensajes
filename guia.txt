@@ -126,6 +126,13 @@ componentes
 
 contacto representa los items de la izuierda
 
+lista contacto
+activeConversation
+
+
+MODELOS
+
+
 
 
 

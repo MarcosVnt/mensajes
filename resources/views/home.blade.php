@@ -21,7 +21,7 @@
     </div>
 </div> --}}
 
-{{-- <b-container fluid style="height: calc(100vh - 56px);">
+ <b-container fluid style="height: calc(100vh - 56px);">
         <b-row no-gutters>
             <b-col cols="4">
                 <contact-list-component></contact-list-component>   
@@ -32,29 +32,6 @@
         </b-row>
     </b-container>
 @endsection
- --}}
 
 
- <b-container fluid style="height: calc(100vh - 56px);">
-    <b-row >
-        <b-col cols="4">
-            <b-form class="my-3 mx-2">
-                <b-form-input class="text-center"
-                type="text"
-                placeholder="Buscar Contacto">
-
-                </b-form-input>
-            </b-form>
-
-            <b-list-group>
-                <contact-component variant="dark"></contact-component>
-                <contact-component variant=""></contact-component>
-                <contact-component variant="secondary"></contact-component>
-                
-            </b-list-group>  
-        </b-col>
-        <b-col cols="8">
-        </b-col>
-    </b-row>
-</b-container>
 @endsection
