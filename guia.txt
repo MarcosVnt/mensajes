@@ -132,6 +132,26 @@ activeConversation
 
 MODELOS
 
+php artisan make:seeder ConversationsTableSeeder
+
+php artisan make:model Conversation -m
+
+php artisan make:model Messages -m
+
+
+
+ROUTES
+no usamos web api , por los token .. 
+no lo necesitamos ya que estamos en el mismo servidor o proyecto... no es necesario?? 
+sistema de autentificacion basado en token.
+
+CONTROLADORES
+php artisan make:controller ConversationController
+php artisan make:controller MessageController
+
+
+
+
 
 
 

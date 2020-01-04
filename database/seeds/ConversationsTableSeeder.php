@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Conversation;
+
 class ConversationsTableSeeder extends Seeder
 {
     /**
@@ -16,7 +18,7 @@ class ConversationsTableSeeder extends Seeder
         	'user_id' => 1,
             'contact_id' => 2,
             'last_message' => null,
-            'last_time' => null,
+            'last_time' => null
             // 'listen_notifications' => ,
             // 'has_blocked' => ,
         ]);
