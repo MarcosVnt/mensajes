@@ -40,7 +40,7 @@
         </b-col>
         <b-col cols="4">
             <b-img rounded="circle" blank width="60" height="60" blank-color="#777" alt="img" class="m-1" />
-            <p>Usuario seleccionado</p>
+            <p>{{contactName}}</p>
             <hr>
             <b-form-checkbox>
                 Desactivar notificaciones
@@ -53,7 +53,8 @@
     export default {
 
         props: {
-            contactId: Number
+            contactId: Number,
+            contactName : String
         },
         data() {
             return {

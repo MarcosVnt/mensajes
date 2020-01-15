@@ -9,6 +9,8 @@ php artisan key:generate
 ojo vagrant
 
 
+
+
 git init
 git add -A 
 git commit -m "Inicio Comit"
@@ -324,6 +326,14 @@ cla 40 OBSERVAR CAMBIOS SOBRE VARIABLES PROPS
 al hacer click izq no actualiza derecha..
 observar cambios en contact_id ,, en activecomponente .. watch contactid(value
 ) , 
+
+git push origin master -f  cla 40
+
+
+
+
+
+
 
 
 
