@@ -12,7 +12,8 @@
                     <contact-component 
                     v-for="conversation in conversations"
                     :key="conversation.id"
-                    :conversation="conversation">
+                    :conversation="conversation"
+                    @click.native="selectConversation(conversation)">
                     </contact-component>
                     
         </b-list-group>  
@@ -30,7 +31,7 @@
            
         },
         mounted() {
-            console.log('Component mounted.  GETCONVERSATIONS')
+            console.log('ContactListComponent mounted.  GETCONVERSATIONS')
             this.getConversations();
         },
         methods:{
@@ -39,10 +40,14 @@
                 axios.get('api/conversations')
                 .then((response) => {
                     this.conversations = response.data;
-                    console.log('getConversations ', this.conversations);
+                    console.log('CL getConversations ', this.conversations);
 
                 });
 
+            },
+            selectConversation(conversation) {
+                console.log(conversation);
+                this.$emit('conversationSelected',conversation);
             }
         }
     }

@@ -51,17 +51,21 @@
 
 <script>
     export default {
+
+        props: {
+            contactId: Number
+        },
         data() {
             return {
                 messages: [],
                 newMessage : '',
-                contactId : 2,
 
             };
             
         },
         mounted() {
             this.getMessages();
+            console.log('mounted AC', this.contactId);
             
         },
         methods: {
@@ -96,8 +100,16 @@
             }
 
 
-
-
         }
+        ,
+            watch: {
+                contactId(val) {
+                    console.log('AC .watch :',val);
+                    console.log(`contactId => $(this.contactId)`);
+                    this.getMessages();
+
+                }
+            },
+
     }
 </script>

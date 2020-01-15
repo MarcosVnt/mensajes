@@ -305,7 +305,25 @@ para declarar el observer  hay que ir appserviceprovider en el boot.
 
 
 
+CLA 38 
+Creamos componente MessengerComponent.vue
+va a contener listado de contactos como conversacion activeConversation
 
+cogemos de home y lo llevamos a este nuevo componente.
+
+creamos un evento .. y lo capturamos... 
+v-on igual @
+tenemos que enviar conversacion como parte del evento...
+recibimos la data del evento ...  $event
+
+cla 39 cargar mensajes segun seleccion
+    eviamos de contact list la info a activeConversation
+
+cla 40 OBSERVAR CAMBIOS SOBRE VARIABLES PROPS 
+
+al hacer click izq no actualiza derecha..
+observar cambios en contact_id ,, en activecomponente .. watch contactid(value
+) , 
 
 
 
