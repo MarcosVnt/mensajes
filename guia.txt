@@ -330,6 +330,161 @@ observar cambios en contact_id ,, en activecomponente .. watch contactid(value
 git push origin master -f  cla 40
 
 
+cla 41 , contactname en componente de la derecha
+
+cla 42 : estado actual .. SIN REALTIME
+antes -> consultar mensajes cada minuto...
+ahora _> websocket aplicacion abierta entre cliente y servidor ... para no consutlar continuamente
+
+realtime conversacion : para que el usuario reciba el mensaje rapidamente..
+pusher y eventos de laravel..
+
+cla43 ->config/ broadcasting.php  
+broadcasting -> propagar eventos  desde servidor a cliente varios driver, psuher redis, etc
+
+pusher -> evita configurar servidor  marcos.visualnt   Pusher_654*
+
+nuevo canal messenger-laravel
+cogemos la klave
+app_id = "932188"
+key = "c84c3bb2c4b0daafff00"
+secret = "8313866883277d092c83"
+cluster = "eu"
+
+ponemos en .env estas claves
+pusher servicio 
+laravel eco biblioteca escuchar...
+
+añadimos dependencia
+
+composer require pusher/pusher-php-server "~4.0"
+
+
+CLA 44  LARAVEL ECHO Y Pusher
+
+instalamos dependencias
+
+npm install --save laravel-echo pusher-js
+
+abrimos bootstrap.js
+descomentamos 
+control + } desmoenta ..
+completamos 
+ key: 'c84c3bb2c4b0daafff00',
+ cluster: 'us2',
+
+cla 45 -- registrar eventos y broadcast de ellos .. comunicar eventos a traves de canaes de comunicacion.
+
+registrar service provider
+        App\Providers\BroadcastServiceProvider::class,
+
+
+defining broadcast eventos
+broadcaston -> 
+
+crear evento 
+php artisan make:event MessageSent
+
+app events -> 
+broadcaston
+
+para ser comunicado por puser implements ShouldBroadcast
+
+nombre canal... 
+
+chanel publicaco , prvate y presence son privados .. es necesario quien puede subscribirse a estos canales..
+
+1 emitir evento a traves del cana broadcaston
+-------------------------------------------------------
+en messageObserver podriamos dispar evento  con 
+
+import App\Events\MessageSent;
+
+event(new MessageSent($message));
+
+para poder recibir esta info message lo añadimos en el contrcutro de la clase MessageSent
+lo hacemos para que todos los atributos publicos son eviados por el canal .. 
+de esta forma envia el objeto message...
+-------------
+lanza evento y este sera comunicado a traves de los canales mediante queued.job 
+cola de trabajo ....es importante .. 
+
+46 QUEUE JOB , COLAS DE TRABAJO.
+resultan utilies para no colapsar el servidor...
+
+un evento puede realizar cualquier cosa.. y puede ser respondido
+
+registro , envia email .. mailgun .. envio de correos for developer
+api envio tarda 1 o 2 seg.. primero entra y despues envia email...
+un evento fue lanzado y fue encoladoo....
+
+uso de colas para tareas pesadas , para que el servidor atienda en momento posterior.
+
+PRINCIPIO DE COLAS...
+
+CONFIG/queue.php
+
+driver para gestionar colas .. 
+archivo .env  queue_driver=sync  , en el instante ..
+
+lo mas adecuado database .. se guardan las tareas ....
+
+laravel.log ... ojo ver resgistro cuando problemas o ....
+BROADCAST_DRIVER = Pusher
+
+
+cla 47 ESCUCHAR EVENTOS usando laravel echo
+
+asincrona ...sync
+
+BROADCAST_DRIVER = Pusher
+
+listening for eventes .. 
+metodo chanel para instanciar al canal
+metod listnen para escuchar el evento ..
+podemos escuchar varios eventos par aun solo canal ...
+
+instanciar laravel echo .. es instanciar de  bootstrap  laravel eco..
+
+en que componente .. en el mas generico MessengerComponent..
+
+en mounted
+
+Echo.channel('orders')
+    .listen('OrderShipped', (e) => {
+        console.log(e.order.name);
+    });
+
+    ojo si el canal es privado...
+
+
+cla 48mostrar mensaje recibido ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

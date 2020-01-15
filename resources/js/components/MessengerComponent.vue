@@ -25,6 +25,12 @@
             };
         },
         mounted() {
+                            console.log('MC - MOUNTD - ECHO CHANES EXAMPLE');// imprimimos inform.
+
+            Echo.channel('example')// canal
+            .listen('MessageSent', (e) => { //evennto
+                console.log('MC - MOUNTD - ECHO CHANES EXAMPLE',e);// imprimimos inform.
+             });
         },
         methods: {
             changeActiveConversation(conversation) {
