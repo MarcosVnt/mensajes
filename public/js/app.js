@@ -1888,42 +1888,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     contactId: Number,
-    contactName: String
+    contactName: String,
+    messages: Array
   },
   data: function data() {
     return {
-      messages: [],
       newMessage: ''
     };
   },
-  mounted: function mounted() {
-    this.getMessages();
-    console.log(' cargo mensajes en AC MOUNTED', this.contactId);
-  },
+  mounted: function mounted() {},
   methods: {
-    getMessages: function getMessages() {
-      var _this = this;
-
-      console.log('getMessages mounted.');
-      /*  var channel = Echo.channel('my-channel');
-           channel.listen('.MessageSent', function(data) {
-               //alert(JSON.stringify(data));
-               console.log('eeechoooo',data);
-       });
-        var channell = Echo.channel('my-channel');
-           channell.listen('.MessageSent', function(e)  { 
-                       console.log('MC - MOUNTD - ECHO CHANES EXAMPLE',e)
-                   });
-            console.log('getMessages mounted.2222222222222222222',channel);
-           console.log('getMessages mounted.333333333333333l',channell); */
-
-      axios.get("api/messages?contact_id=".concat(this.contactId)).then(function (response) {
-        console.log('Ac getMessages()', response.data);
-        _this.messages = response.data;
-      });
-    },
     postMessage: function postMessage() {
-      var _this2 = this;
+      var _this = this;
 
       var params = {
         to_id: this.contactId,
@@ -1932,20 +1908,20 @@ __webpack_require__.r(__webpack_exports__);
       console.log('Enviando Mensaje', params);
       axios.post('api/messages', params).then(function (response) {
         if (response.data.success) {
-          _this2.newMessage = '';
-
-          _this2.getMessages();
+          _this.newMessage = ''; //  this.getMessages();
         }
       });
     }
-  },
-  watch: {
-    contactId: function contactId(val) {
-      console.log('AC .watch :', val);
-      console.log("contactId => $(this.contactId)");
-      this.getMessages();
-    }
   }
+  /*  escucha cambios sobre prop que se define de forma externa.,
+       watch: {
+           contactId(val) {
+               console.log('AC .watch :',val);
+               console.log(`contactId => $(this.contactId)`);
+               this.getMessages();
+            }
+       }, */
+
 });
 
 /***/ }),
@@ -2124,43 +2100,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    //recibe del exterior
+    userId: Number
+  },
   data: function data() {
     return {
-      selectedConversation: null
+      selectedConversation: null,
+      messages: [],
+      marcos: 'marcos'
     };
   },
   mounted: function mounted() {
-    console.log('MC - MOUNTD - ECHO CHANES EXAMPLE'); // imprimimos inform.
+    var _this = this;
 
-    /*   Echo.channel('marcos')
-        .listen('pepe', (e) => { 
-            console.log('MC - MOUNTD - ECHO CHANES ppee',e);
-        }); */
+    console.log('MOUNTED', this.marcos); //  this.metoMensaje('uno');
 
-    var channel = Echo.channel('marcos');
-    channel.listen('.MessageSent', function (data) {
-      //alert(JSON.stringify(data));
-      console.log('eeechoooo', data);
+    /*      var channel = Echo.channel('marcos');
+           channel.listen('.MessageSent', function(data) {
+               console.log('data.message',data.message,this.marcos);
+               const message = data.message;
+               console.log('.message',message);
+               console.log('MENSAJES ...', this.messages,this.userId,this.marcos);
+               
+               message.written_by_me = (this.userId == message.from_id);
+              // this.messages.push(message);
+               console.log('dat.message 2',data.message);
+               console.log('mensaje---2-->',message);
+               this.metoMensaje(message); 
+               
+        });   */
+
+    Echo.channel('marcos').listen('.MessageSent', function (data) {
+      var message = data.message;
+      message.written_by_me = _this.userId == message.from_id;
+      console.log('message', message);
+
+      _this.messages.push(message);
+
+      console.log('mensajes : ', _this.messages);
     });
-    console.log('MC - MOUNTD - fiiiin');
-    /* Echo.channel('EnvioMensaje')
-                .listen('MessageSent', (e) => { 
-                    console.log('MC - MOUNTD - ECHO CHANES EXAMPLE',e)
-                });
-     */
-
-    /*   Echo.channel('example')// canal
-      .listen('MessageSent', (e) => { //evennto
-          console.log('MC - MOUNTD - ECHO CHANES EXAMPLE',e);// imprimimos inform.
-       });
-                      console.log('MC - MOUNTD - fiiiin');// imprimimos inform.
-    */
   },
   methods: {
+    metoMensaje: function metoMensaje(message) {
+      console.log('dengro de metoMensaje', message, this.messages);
+    },
     changeActiveConversation: function changeActiveConversation(conversation) {
       console.log('Nueva conv seleccionada', conversation, this.selectedConversation);
       this.selectedConversation = conversation;
+      this.getMessages();
+      console.log('Nueva conv seleccionada222', this.messages);
+    },
+    getMessages: function getMessages() {
+      var _this2 = this;
+
+      console.log('getMessages mounted.');
+      axios.get("api/messages?contact_id=".concat(this.selectedConversation.contact_id)).then(function (response) {
+        console.log('Ac getMessages()', response.data);
+        _this2.messages = response.data;
+        console.log('this.Messages .', _this2.messages);
+      });
     }
   }
 });
@@ -77781,7 +77782,8 @@ var render = function() {
                 ? _c("active-conversation-component", {
                     attrs: {
                       "contact-id": _vm.selectedConversation.contact_id,
-                      "contact-name": _vm.selectedConversation.contact_name
+                      "contact-name": _vm.selectedConversation.contact_name,
+                      messages: _vm.messages
                     }
                   })
                 : _vm._e()

@@ -50,51 +50,20 @@
 
         props: {
             contactId: Number,
-            contactName : String
+            contactName : String,
+            messages: Array
         },
         data() {
             return {
-                messages: [],
                 newMessage : '',
 
             };
             
         },
         mounted() {
-            this.getMessages();
-            console.log(' cargo mensajes en AC MOUNTED', this.contactId);
-
-            
-            
         },
         methods: {
-            getMessages() {
-                console.log('getMessages mounted.');
-
-           /*  var channel = Echo.channel('my-channel');
-                channel.listen('.MessageSent', function(data) {
-                    //alert(JSON.stringify(data));
-                    console.log('eeechoooo',data);
-            });
-
-            var channell = Echo.channel('my-channel');
-                channell.listen('.MessageSent', function(e)  { 
-                            console.log('MC - MOUNTD - ECHO CHANES EXAMPLE',e)
-                        });
-
-                console.log('getMessages mounted.2222222222222222222',channel);
-                console.log('getMessages mounted.333333333333333l',channell); */
-
-
-
-
-
-                axios.get(`api/messages?contact_id=${this.contactId}`).then((response=> 
-                {
-                    console.log('Ac getMessages()' ,response.data);
-                    this.messages=response.data}
-                    ));
-            },
+           
 
             postMessage() {
                 
@@ -110,7 +79,7 @@
                 {
                     if(response.data.success){
                          this.newMessage = '';
-                         this.getMessages();
+                       //  this.getMessages();
                 
                     }
                  }
@@ -119,7 +88,7 @@
 
 
         }
-        ,
+       /*  escucha cambios sobre prop que se define de forma externa.,
             watch: {
                 contactId(val) {
                     console.log('AC .watch :',val);
@@ -127,7 +96,7 @@
                     this.getMessages();
 
                 }
-            },
+            }, */
 
     }
 </script>

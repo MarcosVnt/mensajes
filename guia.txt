@@ -373,6 +373,9 @@ completamos
  key: 'c84c3bb2c4b0daafff00',
  cluster: 'us2',
 
+
+
+
 cla 45 -- registrar eventos y broadcast de ellos .. comunicar eventos a traves de canaes de comunicacion.
 
 registrar service provider
@@ -458,12 +461,15 @@ Echo.channel('orders')
     ojo si el canal es privado...
 
 
-cla 48mostrar mensaje recibido ..
+cla 48 
+
+
+mostrar mensaje recibido ..
 obterner mensajes canal pusher.
 desde messengerComponen lo recibimos en el mounted
 y lo pasamos al componente...
 
-
+ 
 hijo a padre -- eventos
 
 de padre a hijo PROPS
@@ -494,7 +500,31 @@ comparamos
 
 
 
+48 : 
+1 pasar mensaje de MC a AC  y formatear
+padre a hijo : props 
+hijo a padre : eventos ...
+Enviamos messages como propiedad
 
+antes ac gestionaba y pedia mensages ahora es MC  asi que refactorizamos...
+ac -> getMeesaages  .. mover a  MC y qutiamos
+
+ watch ..escucha cambios sobre una prop que se recibe de forma externa.
+
+ de ac mounted quitamos 
+
+ mc -> hacer peticiones .. se basa en contact_id no ahora selecterd
+ ahora llamamos a getmessenger cuanod se activa una conversacion
+
+ cuando recibimos de laravel-eco mensages tamiben lo llamamos.. 
+ poero ojo hay que formatearlo ... ver mensageController..
+ falta written_by_me
+
+ MessageSent  - lo normal seria en el contrstructur hacer la modificacion .. 
+ pero auth helper no lo tenemos...
+comparamos quien envia con canal de pusshr y definimos si enviamos o recibimos...
+en MC
+                    message.written_by_me = (userId == message.from_id);
 
 
 
