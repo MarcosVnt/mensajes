@@ -47,6 +47,7 @@
             },
             selectConversation(conversation) {
                 console.log(conversation);
+                //emite evento 
                 this.$emit('conversationSelected',conversation);
             }
         }

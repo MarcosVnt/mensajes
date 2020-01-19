@@ -32,10 +32,20 @@ class MessageSent implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
+   /*  public function broadcastOn()
+    {
+        return new PrivateChannel('example');
+       //return new Channel('mensaje');
+
+    } */
+
     public function broadcastOn()
     {
-       // return new PrivateChannel('example');
-       return new Channel('example');
-
+        return ['marcos'];
+    }
+  
+    public function broadcastAs()
+    {
+        return 'MessageSent';
     }
 }

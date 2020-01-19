@@ -13,10 +13,6 @@
                     :written-by-me="message.written_by_me">
                     {{message.content}}
               </message-conversation-component>
-
-
-               
-
            
                 <div slot="footer">
                     <b-form class="mb-0" @submit.prevent="postMessage"
@@ -26,7 +22,7 @@
                             <b-form-input class="text-center"
                                 v-model = "newMessage"
                                 type="text"
-                                placeholder="1Escribe un mensaje ...">
+                                placeholder="Escribe un mensaje ...">
                             </b-form-input>
 
                             <b-input-group-append>
@@ -66,15 +62,36 @@
         },
         mounted() {
             this.getMessages();
-            console.log('mounted AC', this.contactId);
+            console.log(' cargo mensajes en AC MOUNTED', this.contactId);
+
+            
             
         },
         methods: {
             getMessages() {
-                console.log('getMessages mounted.')
+                console.log('getMessages mounted.');
+
+           /*  var channel = Echo.channel('my-channel');
+                channel.listen('.MessageSent', function(data) {
+                    //alert(JSON.stringify(data));
+                    console.log('eeechoooo',data);
+            });
+
+            var channell = Echo.channel('my-channel');
+                channell.listen('.MessageSent', function(e)  { 
+                            console.log('MC - MOUNTD - ECHO CHANES EXAMPLE',e)
+                        });
+
+                console.log('getMessages mounted.2222222222222222222',channel);
+                console.log('getMessages mounted.333333333333333l',channell); */
+
+
+
+
+
                 axios.get(`api/messages?contact_id=${this.contactId}`).then((response=> 
                 {
-                    console.log(response.data);
+                    console.log('Ac getMessages()' ,response.data);
                     this.messages=response.data}
                     ));
             },

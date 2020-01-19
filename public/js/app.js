@@ -1885,10 +1885,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     contactId: Number,
@@ -1902,15 +1898,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getMessages();
-    console.log('mounted AC', this.contactId);
+    console.log(' cargo mensajes en AC MOUNTED', this.contactId);
   },
   methods: {
     getMessages: function getMessages() {
       var _this = this;
 
       console.log('getMessages mounted.');
+      /*  var channel = Echo.channel('my-channel');
+           channel.listen('.MessageSent', function(data) {
+               //alert(JSON.stringify(data));
+               console.log('eeechoooo',data);
+       });
+        var channell = Echo.channel('my-channel');
+           channell.listen('.MessageSent', function(e)  { 
+                       console.log('MC - MOUNTD - ECHO CHANES EXAMPLE',e)
+                   });
+            console.log('getMessages mounted.2222222222222222222',channel);
+           console.log('getMessages mounted.333333333333333l',channell); */
+
       axios.get("api/messages?contact_id=".concat(this.contactId)).then(function (response) {
-        console.log(response.data);
+        console.log('Ac getMessages()', response.data);
         _this.messages = response.data;
       });
     },
@@ -2039,7 +2047,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     selectConversation: function selectConversation(conversation) {
-      console.log(conversation);
+      console.log(conversation); //emite evento 
+
       this.$emit('conversationSelected', conversation);
     }
   }
@@ -2114,6 +2123,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2123,11 +2133,29 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log('MC - MOUNTD - ECHO CHANES EXAMPLE'); // imprimimos inform.
 
-    Echo.channel('example') // canal
-    .listen('MessageSent', function (e) {
-      //evennto
-      console.log('MC - MOUNTD - ECHO CHANES EXAMPLE', e); // imprimimos inform.
+    /*   Echo.channel('marcos')
+        .listen('pepe', (e) => { 
+            console.log('MC - MOUNTD - ECHO CHANES ppee',e);
+        }); */
+
+    var channel = Echo.channel('marcos');
+    channel.listen('.MessageSent', function (data) {
+      //alert(JSON.stringify(data));
+      console.log('eeechoooo', data);
     });
+    console.log('MC - MOUNTD - fiiiin');
+    /* Echo.channel('EnvioMensaje')
+                .listen('MessageSent', (e) => { 
+                    console.log('MC - MOUNTD - ECHO CHANES EXAMPLE',e)
+                });
+     */
+
+    /*   Echo.channel('example')// canal
+      .listen('MessageSent', (e) => { //evennto
+          console.log('MC - MOUNTD - ECHO CHANES EXAMPLE',e);// imprimimos inform.
+       });
+                      console.log('MC - MOUNTD - fiiiin');// imprimimos inform.
+    */
   },
   methods: {
     changeActiveConversation: function changeActiveConversation(conversation) {
@@ -77446,7 +77474,7 @@ var render = function() {
                             staticClass: "text-center",
                             attrs: {
                               type: "text",
-                              placeholder: "1Escribe un mensaje ..."
+                              placeholder: "Escribe un mensaje ..."
                             },
                             model: {
                               value: _vm.newMessage,
@@ -90030,11 +90058,20 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'c84c3bb2c4b0daafff00',
+
+    encrypted: true,
+    forceTLS: true 
+});
+ */
+
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_2__["default"]({
   broadcaster: 'pusher',
   key: 'c84c3bb2c4b0daafff00',
-  cluster: 'us2',
-  encrypted: true
+  cluster: 'eu',
+  forceTLS: true
 });
 
 /***/ }),

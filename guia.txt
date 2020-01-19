@@ -459,6 +459,40 @@ Echo.channel('orders')
 
 
 cla 48mostrar mensaje recibido ..
+obterner mensajes canal pusher.
+desde messengerComponen lo recibimos en el mounted
+y lo pasamos al componente...
+
+
+hijo a padre -- eventos
+
+de padre a hijo PROPS
+
+el mensaje se recibe .. pasar a un hijo .. 
+mediante propiedad geneerarl para que el componente reciba arreglo mensages
+hacemos push sobre arreglo para añadir mensaje
+y enviar este a active conversation component  ... 
+
+lo quitamos de la data y lo ponemos a props...
+ojo a cambios por ello..
+getMessages pide al servidor .. pero ahora no forma de data .. vien del exterior..
+
+pasar consultas al componente messenger.. 
+
+el watch : no lo necesitamos de activecomponent...
+escuchaba cambios de una propiedad externa...
+
+en messengercomponent hacemos las peticiones... 
+cada vez que se selecciona una conversacion llammaos a getmessenger...
+el mensage recibido de laravel eco. lo enviamos mediante push a messenger...
+
+ojo dengro de evento como esta en la cola puede ocurrir tiempo despues ,, y portanto no tenr 
+session activa ...
+no helper auth dentro de un evento .. 
+
+comparamos 
+
+
 
 
 
