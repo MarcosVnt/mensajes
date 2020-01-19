@@ -1,18 +1,21 @@
 <template>
     <b-row>
         <b-col cols="8">
-            <b-card 
+            <b-card no-body
                   footer-bg-variant="light"
                   footer-border-variant="dark"
                   title="Conversación activa"
                   class="h-100">
 
-                   <message-conversation-component
-                    v-for="message in messages"
-                    :key="messages.id"
-                    :written-by-me="message.written_by_me">
-                    {{message.content}}
-              </message-conversation-component>
+                <b-card-body class="card-body-scroll">
+                        <message-conversation-component
+                            v-for="message in messages"
+                            :key="messages.id"
+                            :written-by-me="message.written_by_me">
+                            {{message.content}}
+                    </message-conversation-component>
+                    
+                </b-card-body>
            
                 <div slot="footer">
                     <b-form class="mb-0" @submit.prevent="postMessage"
@@ -84,6 +87,12 @@
                     }
                  }
                 ));
+            },
+
+            scrollToBottom() {
+                const el = document.querySelector('.card-body-scroll');
+                el.scrollTop = el.scrollHeight;
+
             }
 
 
@@ -97,6 +106,20 @@
 
                 }
             }, */
+            ,
+            watch : {
+                messages() {
+                    this.scrollToBottom();
+                    console.log('messages ha cambiado;');
+                }
+            }
 
     }
 </script>
+<style>
+  .card-body-scroll {
+        max-height: calc(100vh - 63px);
+        overflow-y: auto;
+    }
+</style>
+    
