@@ -1,9 +1,11 @@
 <template>
+
 <b-container fluid style="height: calc(100vh - 56px);">
         <b-row no-gutters>
             <b-col cols="4">
                 <contact-list-component 
-                @conversationSelected="changeActiveConversation($event)">
+                @conversationSelected="changeActiveConversation($event)"
+                >
                     </contact-list-component>   
             </b-col>
             <b-col cols="8">
@@ -12,6 +14,7 @@
                 :contact-id="selectedConversation.contact_id"
                 :contact-name="selectedConversation.contact_name"
                 :messages="messages"
+                @messageCreated="addMessage($event)"
                 ></active-conversation-component>
             </b-col>
         </b-row>
@@ -55,13 +58,22 @@
 
 
 
-            Echo.channel('marcos')
+            //Echo.channel('marcos')
+            //Echo.channel(`user.${this.userId}`)
+            console.log(`users.${this.userId}`);
+            Echo.channel(`users.${this.userId}`)
 		    .listen('.MessageSent', (data) => {
 		    	const message = data.message;
-		    	message.written_by_me = (this.userId == message.from_id);
+		    	/* message.written_by_me = (this.userId == message.from_id);
 		    	console.log('message',message);
                 this.messages.push(message);
-                console.log('mensajes : ',this.messages);
+                console.log('mensajes : ',this.messages); */
+                
+                console.log('laravel - message',message);
+                //message.written_by_me = (this.userId == message.from_id);
+                message.written_by_me = false;  // si lo recibimos no lo enviamos nosotros.
+
+                this.addMessage(message);
                 
 		    });
 
@@ -96,6 +108,20 @@
                 
                 );
             },
+
+            addMessage(message){
+                
+                if(this.selectedConversation.contact_id == message.from_id
+                || this.selectedConversation.contact_id == message.to_id
+                ){
+                                console.log('message',message);
+                                this.messages.push(message);
+                                console.log('mensajes : ',this.messages);
+                }
+
+
+
+            }
 
         }
     }

@@ -527,9 +527,60 @@ en MC
                     message.written_by_me = (userId == message.from_id);
 
 
+ahora tenemos que pasar a MC el id DESDE HOME.BLADE.php
+
+
+CLA 49 DIVERSOS CANALES UNO PARA CADA CLIENTE ....
 
 
 
+
+
+
+
+CLA 51 MAS DE UN CANAL
+
+mensajeSent  
+ahora : 
+-se crea 1 mensaje en la db
+-broadcast del evento
+- laravel echo .. todos los usuarios son notivacods .. escuchan canal example.
+
+
+evento a canal especifico..
+
+messenger component : subscribirse a canal por ID...
+
+en activeC creamos evento para informar de hijo a padre ..
+en MessageController añadimos como respuesta el mensaje registrado...
+asi en AC podmeos en postMessenger saber el mensaje...
+
+Mesngcomponet padre recibe el evento .. lo escuchamos mediante @messageCreated
+via addMessenger() lo procesamos ...
+definimos addmessenger y recibimos un mensaje...
+falta el atributo written_by_me.
+
+añadimos mensaje al arreglo de mensajes ...
+
+addmesage lo llamamos al guardar y emitir evento... y al recibir de laravel echo
+
+
+
+
+
+mensaje no se muestra si no esta en la conversacion... 
+estoy en conversacion con un usuario y recibo de otro . este mensaje no deberia 
+mostrarse en la conversacion primera.. 
+Pero si deberia acgtuallizar el ultimo mensaje recibido en panel izquierda.
+
+en MessengerComponenent en addmessage
+
+if(selectedConversation.contact_id == message.to_id){
+
+}
+
+cuando escribimos mensje nosotros no es necesario calcular wrritenb_by_me es true
+cambiamos si recibiomo true , si enviamos false
 
 
 

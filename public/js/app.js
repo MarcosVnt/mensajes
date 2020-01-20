@@ -1912,6 +1912,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('api/messages', params).then(function (response) {
         if (response.data.success) {
           _this.newMessage = ''; //  this.getMessages();
+          // creamos evento para cominicar desde hijo a padre
+
+          var message = response.data.message;
+          message.written_by_me = true;
+
+          _this.$emit('messageCreated', message);
         }
       });
     },
@@ -2114,6 +2120,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     //recibe del exterior
@@ -2145,15 +2154,22 @@ __webpack_require__.r(__webpack_exports__);
                this.metoMensaje(message); 
                
         });   */
+    //Echo.channel('marcos')
+    //Echo.channel(`user.${this.userId}`)
 
-    Echo.channel('marcos').listen('.MessageSent', function (data) {
+    console.log("users.".concat(this.userId));
+    Echo.channel("users.".concat(this.userId)).listen('.MessageSent', function (data) {
       var message = data.message;
-      message.written_by_me = _this.userId == message.from_id;
-      console.log('message', message);
+      /* message.written_by_me = (this.userId == message.from_id);
+      console.log('message',message);
+               this.messages.push(message);
+               console.log('mensajes : ',this.messages); */
 
-      _this.messages.push(message);
+      console.log('laravel - message', message); //message.written_by_me = (this.userId == message.from_id);
 
-      console.log('mensajes : ', _this.messages);
+      message.written_by_me = false; // si lo recibimos no lo enviamos nosotros.
+
+      _this.addMessage(message);
     });
   },
   methods: {
@@ -2175,6 +2191,13 @@ __webpack_require__.r(__webpack_exports__);
         _this2.messages = response.data;
         console.log('this.Messages .', _this2.messages);
       });
+    },
+    addMessage: function addMessage(message) {
+      if (this.selectedConversation.contact_id == message.from_id || this.selectedConversation.contact_id == message.to_id) {
+        console.log('message', message);
+        this.messages.push(message);
+        console.log('mensajes : ', this.messages);
+      }
     }
   }
 });
@@ -77852,6 +77875,11 @@ var render = function() {
                       "contact-id": _vm.selectedConversation.contact_id,
                       "contact-name": _vm.selectedConversation.contact_name,
                       messages: _vm.messages
+                    },
+                    on: {
+                      messageCreated: function($event) {
+                        return _vm.addMessage($event)
+                      }
                     }
                   })
                 : _vm._e()

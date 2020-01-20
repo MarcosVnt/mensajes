@@ -41,7 +41,8 @@ class MessageSent implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return ['marcos'];
+        //return ['marcos'];
+        return new Channel('users.'  . $this->message->to_id);
     }
   
     public function broadcastAs()

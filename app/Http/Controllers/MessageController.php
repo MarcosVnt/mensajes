@@ -39,14 +39,15 @@ class MessageController extends Controller
 
     public function store(Request $request){
        // dd($request);
-        $menssage = new Message();
-        $menssage->from_id = auth()->id();
-        $menssage->to_id = $request->to_id;
-        $menssage->content = $request->content;
-        $saved = $menssage->save();
+        $message = new Message();
+        $message->from_id = auth()->id();
+        $message->to_id = $request->to_id;
+        $message->content = $request->content;
+        $saved = $message->save();
 
         $data = [];
         $data['success'] = $saved;
+        $data['message'] = $message;
         return $data;
 
     }

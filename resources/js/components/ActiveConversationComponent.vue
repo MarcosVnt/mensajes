@@ -83,6 +83,10 @@
                     if(response.data.success){
                          this.newMessage = '';
                        //  this.getMessages();
+                       // creamos evento para cominicar desde hijo a padre
+                       const message = response.data.message;
+                       message.written_by_me = true;
+                        this.$emit('messageCreated', message);
                 
                     }
                  }
