@@ -22,29 +22,24 @@
 <script>
     export default {
         //variable viene del exterior
+        props: {
+            // propiedad que se recibe de forma externa
+            conversations : Array
+        },
         
         data() {
             return {
-                conversations: [],
+               
 
             };
            
         },
         mounted() {
             console.log('ContactListComponent mounted.  GETCONVERSATIONS')
-            this.getConversations();
+           // ya no lo llamam this.getConversations();
         },
         methods:{
-            getConversations() {
-                
-                axios.get('api/conversations')
-                .then((response) => {
-                    this.conversations = response.data;
-                    console.log('CL getConversations ', this.conversations);
-
-                });
-
-            },
+           
             selectConversation(conversation) {
                 console.log(conversation);
                 //emite evento 

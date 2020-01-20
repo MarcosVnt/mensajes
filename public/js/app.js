@@ -2023,24 +2023,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   //variable viene del exterior
+  props: {
+    // propiedad que se recibe de forma externa
+    conversations: Array
+  },
   data: function data() {
-    return {
-      conversations: []
-    };
+    return {};
   },
   mounted: function mounted() {
-    console.log('ContactListComponent mounted.  GETCONVERSATIONS');
-    this.getConversations();
+    console.log('ContactListComponent mounted.  GETCONVERSATIONS'); // ya no lo llamam this.getConversations();
   },
   methods: {
-    getConversations: function getConversations() {
-      var _this = this;
-
-      axios.get('api/conversations').then(function (response) {
-        _this.conversations = response.data;
-        console.log('CL getConversations ', _this.conversations);
-      });
-    },
     selectConversation: function selectConversation(conversation) {
       console.log(conversation); //emite evento 
 
@@ -2132,13 +2125,15 @@ __webpack_require__.r(__webpack_exports__);
     return {
       selectedConversation: null,
       messages: [],
-      marcos: 'marcos'
+      marcos: 'marcos',
+      conversations: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    console.log('MOUNTED', this.marcos); //  this.metoMensaje('uno');
+    console.log('MOUNTED', this.marcos);
+    this.getConversations(); //  this.metoMensaje('uno');
 
     /*      var channel = Echo.channel('marcos');
            channel.listen('.MessageSent', function(data) {
@@ -2193,11 +2188,28 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addMessage: function addMessage(message) {
+      // const conversation = conversations.find(function (conversation)
+      var conversation = this.conversations.find(function (conversation) {
+        return conversation.contact_id == message.from_id || conversation.contact_id == message.to_id;
+      });
+      var author = this.userId === message.from_id ? 'Tu' : conversation.contact_name;
+      conversation.last_message = "".concat(author, ": ").concat(message.content); //conversation.last_message = message.content;
+
+      conversation.last_time = message.created_at;
+
       if (this.selectedConversation.contact_id == message.from_id || this.selectedConversation.contact_id == message.to_id) {
         console.log('message', message);
         this.messages.push(message);
         console.log('mensajes : ', this.messages);
       }
+    },
+    getConversations: function getConversations() {
+      var _this3 = this;
+
+      axios.get('api/conversations').then(function (response) {
+        _this3.conversations = response.data;
+        console.log('CL getConversations ', _this3.conversations);
+      });
     }
   }
 });
@@ -77855,6 +77867,7 @@ var render = function() {
             { attrs: { cols: "4" } },
             [
               _c("contact-list-component", {
+                attrs: { conversations: _vm.conversations },
                 on: {
                   conversationSelected: function($event) {
                     return _vm.changeActiveConversation($event)

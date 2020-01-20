@@ -583,6 +583,26 @@ cuando escribimos mensje nosotros no es necesario calcular wrritenb_by_me es tru
 cambiamos si recibiomo true , si enviamos false
 
 
+CLA 53 LAST Message
+
+recibimos sms a traves de canal ..
+o recibimos sms si lo enviamos nosotros...
+
+
+debemos mostrar sms si envia contacto con el que estamos conversando 
+o si lo hemos enviado nostros al contacto con quien conversamos...
+
+
+actulaizamos lado izquierdo .. CONTACT LIST component
+hace peticion a la api...
+
+pasamos las conversaciones a MESSENGERCOMPONET..
+pasamos propiedead :conversations...
+
+pasamaos getConversaciones a MessengerComponenent
+y en MessengerComponenent lo enviamos al hijo como props
+
+
 
 
 

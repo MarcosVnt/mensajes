@@ -5,7 +5,7 @@
             <b-col cols="4">
                 <contact-list-component 
                 @conversationSelected="changeActiveConversation($event)"
-                >
+                :conversations="conversations">
                     </contact-list-component>   
             </b-col>
             <b-col cols="8">
@@ -33,11 +33,16 @@
              selectedConversation: null,
              messages: [],
              marcos : 'marcos',
+             conversations : []
              
             };
         },
         mounted() {
             console.log('MOUNTED', this.marcos)
+
+            this.getConversations();
+
+
 
           //  this.metoMensaje('uno');
          /*      var channel = Echo.channel('marcos');
@@ -110,7 +115,19 @@
             },
 
             addMessage(message){
+
+               // const conversation = conversations.find(function (conversation)
+                const conversation = this.conversations.find( (conversation) => { 
+                    return conversation.contact_id == message.from_id ||
+                    conversation.contact_id == message.to_id;
+                });
+
+                const author = this.userId === message.from_id ? 'Tu' : conversation.contact_name;
+                conversation.last_message = `${author}: ${message.content}`;
+                //conversation.last_message = message.content;
+                conversation.last_time = message.created_at;
                 
+
                 if(this.selectedConversation.contact_id == message.from_id
                 || this.selectedConversation.contact_id == message.to_id
                 ){
@@ -121,7 +138,19 @@
 
 
 
-            }
+            },
+
+             getConversations() {
+                
+                axios.get('api/conversations')
+                .then((response) => {
+                    this.conversations = response.data;
+                    console.log('CL getConversations ', this.conversations);
+                   
+
+                });
+
+            },
 
         }
     }
