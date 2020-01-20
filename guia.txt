@@ -622,6 +622,36 @@ en concactlistcomponet lo usamos... relative time
 moment("2018-06-13 17:50:30", "YYYY-MM-DD hh:mm:ss").locale('es').fromNow();
 
 
+55 . como poder ver mensajes intercambiados por otros .. 
+
+ejcuntando desde console esto y cambiando el userid podriamos interceptar ...
+
+            Echo.channel(`users.${this.userId}`)
+		    .listen('.MessageSent', (data) => {
+		    	const message = data.message;
+                
+                console.log('laravel - message',message);
+                message.written_by_me = false;  // si lo recibimos no lo enviamos nosotros.
+
+                this.addMessage(message);
+                
+		    });
+SOLUCION CANALES PRIVADOS .. parq que usuarios solo a usuarios privados...
+
+
+CLA 56 
+
+evento notificamos y hacemos broadcast es smsSent
+usamos PrivateChanel 
+hay que decir al servidor que usuarios tienen permiso 
+authorizing channels laravel echo
+rutas permiten autorizacion routes/channel.php
+
+//callback de autorizacion $user quien inicia sesion .. id es usuario al que se envia...
+
+
+
+
 
 
 

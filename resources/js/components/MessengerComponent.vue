@@ -41,48 +41,34 @@
             console.log('MOUNTED', this.marcos)
 
             this.getConversations();
-
-
-
-          //  this.metoMensaje('uno');
-         /*      var channel = Echo.channel('marcos');
-                channel.listen('.MessageSent', function(data) {
-                    console.log('data.message',data.message,this.marcos);
-                    const message = data.message;
-                    console.log('.message',message);
-                    console.log('MENSAJES ...', this.messages,this.userId,this.marcos);
-                    
-                    message.written_by_me = (this.userId == message.from_id);
-                   // this.messages.push(message);
-                    console.log('dat.message 2',data.message);
-                    console.log('mensaje---2-->',message);
-                    this.metoMensaje(message); 
-                    
-
-            });   */
-
-
-
-            //Echo.channel('marcos')
-            //Echo.channel(`user.${this.userId}`)
             console.log(`users.${this.userId}`);
+
             Echo.private(`users.${this.userId}`)
 		    .listen('.MessageSent', (data) => {
 		    	const message = data.message;
 		    
                 console.log('laravel - message',message);
-                //message.written_by_me = (this.userId == message.from_id);
                 message.written_by_me = false;  // si lo recibimos no lo enviamos nosotros.
 
                 this.addMessage(message);
-            	/* message.written_by_me = (this.userId == message.from_id);
-		    	console.log('message',message);
-                this.messages.push(message);
-                console.log('mensajes : ',this.messages); */
-                    
 		    });
 
-
+            Echo.join('messenger')
+                // al conectarnos tenemos acceso a tres eventos..
+                // user tiene los usuarios que se van conectando...
+                .here((users) => {
+                    //
+                    console.log('online',users);
+                    users.forEach((user) => this.changeStatus(user, true));
+                })
+                /* .joining((user) => {
+                  this.changeStatus(user,true)
+ */             .joining(
+                    user => this.changeStatus(user, true)    
+                )
+                .leaving(
+                    user =>this.changeStatus(user,false)
+                );
 
 
 
@@ -153,6 +139,16 @@
                 });
 
             },
+            changeStatus(user, status){
+                      const index = this.conversations.findIndex((conversation) =>{
+                        return conversation.contact_id == user.id
+                    });
+                    console.log('index',index,'user.id',user.id,'conversations',this.conversations);
+                    if (index >= 0){
+                    this.$set(this.conversations[index],'online' , status);
+                    }
+
+            }
 
         }
     }
