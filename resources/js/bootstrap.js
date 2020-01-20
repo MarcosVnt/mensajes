@@ -52,4 +52,5 @@ window.Echo = new Echo({
     forceTLS: true
   });
   
-  
+
+  window.moment = require('moment');

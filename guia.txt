@@ -602,6 +602,28 @@ pasamos propiedead :conversations...
 pasamaos getConversaciones a MessengerComponenent
 y en MessengerComponenent lo enviamos al hijo como props
 
+falta....
+
+
+CLA 54 MOMENTS.JS fecha con formato....
+
+4 CORREGISR FORMATO DE FECHAS....
+SI han pasado dias .. que ponga ayer o hace dos dias...
+
+npm install moment --save
+
+cargar moment como dependencia
+resources/assets/js/bootstrap o app.js
+
+window.moment = require('moment');
+
+en concactlistcomponet lo usamos... relative time 
+
+moment("2018-06-13 17:50:30", "YYYY-MM-DD hh:mm:ss").locale('es').fromNow();
+
+
+
+
 
 
 
