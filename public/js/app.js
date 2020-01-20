@@ -2158,18 +2158,18 @@ __webpack_require__.r(__webpack_exports__);
     //Echo.channel(`user.${this.userId}`)
 
     console.log("users.".concat(this.userId));
-    Echo.channel("users.".concat(this.userId)).listen('.MessageSent', function (data) {
+    Echo["private"]("users.".concat(this.userId)).listen('.MessageSent', function (data) {
       var message = data.message;
-      /* message.written_by_me = (this.userId == message.from_id);
-      console.log('message',message);
-               this.messages.push(message);
-               console.log('mensajes : ',this.messages); */
-
       console.log('laravel - message', message); //message.written_by_me = (this.userId == message.from_id);
 
       message.written_by_me = false; // si lo recibimos no lo enviamos nosotros.
 
       _this.addMessage(message);
+      /* message.written_by_me = (this.userId == message.from_id);
+      console.log('message',message);
+         this.messages.push(message);
+         console.log('mensajes : ',this.messages); */
+
     });
   },
   methods: {

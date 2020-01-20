@@ -66,21 +66,23 @@
             //Echo.channel('marcos')
             //Echo.channel(`user.${this.userId}`)
             console.log(`users.${this.userId}`);
-            Echo.channel(`users.${this.userId}`)
+            Echo.private(`users.${this.userId}`)
 		    .listen('.MessageSent', (data) => {
 		    	const message = data.message;
-		    	/* message.written_by_me = (this.userId == message.from_id);
-		    	console.log('message',message);
-                this.messages.push(message);
-                console.log('mensajes : ',this.messages); */
-                
+		    
                 console.log('laravel - message',message);
                 //message.written_by_me = (this.userId == message.from_id);
                 message.written_by_me = false;  // si lo recibimos no lo enviamos nosotros.
 
                 this.addMessage(message);
-                
+            	/* message.written_by_me = (this.userId == message.from_id);
+		    	console.log('message',message);
+                this.messages.push(message);
+                console.log('mensajes : ',this.messages); */
+                    
 		    });
+
+
 
 
 
@@ -126,7 +128,7 @@
                 conversation.last_message = `${author}: ${message.content}`;
                 //conversation.last_message = message.content;
                 conversation.last_time = message.created_at;
-                
+
 
                 if(this.selectedConversation.contact_id == message.from_id
                 || this.selectedConversation.contact_id == message.to_id

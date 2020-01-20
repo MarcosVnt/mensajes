@@ -14,3 +14,10 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+
+//callback de autorizacion $user quien inicia sesion .. id es usuario al que se envia...
+
+Broadcast::channel('users.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
+});
