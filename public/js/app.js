@@ -2027,13 +2027,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   //variable viene del exterior
   props: {
@@ -2129,6 +2122,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     //recibe del exterior
@@ -2139,7 +2144,8 @@ __webpack_require__.r(__webpack_exports__);
       selectedConversation: null,
       messages: [],
       marcos: 'marcos',
-      conversations: []
+      conversations: [],
+      querySearch: ''
     };
   },
   mounted: function mounted() {
@@ -2226,6 +2232,15 @@ __webpack_require__.r(__webpack_exports__);
       if (index >= 0) {
         this.$set(this.conversations[index], 'online', status);
       }
+    }
+  },
+  computed: {
+    conversationsFiltered: function conversationsFiltered() {
+      var _this4 = this;
+
+      return this.conversations.filter(function (conversation) {
+        return conversation.contact_name.toLowerCase().includes(_this4.querySearch.toLowerCase());
+      });
     }
   }
 });
@@ -95419,18 +95434,6 @@ var render = function() {
     "div",
     [
       _c(
-        "b-form",
-        { staticClass: "my-3 mx-2" },
-        [
-          _c("b-form-input", {
-            staticClass: "text-center",
-            attrs: { type: "text", placeholder: "Buscar Contacto" }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
         "b-list-group",
         _vm._l(_vm.conversations, function(conversation) {
           return _c("contact-component", {
@@ -95529,8 +95532,27 @@ var render = function() {
             "b-col",
             { attrs: { cols: "4" } },
             [
+              _c(
+                "b-form",
+                { staticClass: "my-3 mx-2" },
+                [
+                  _c("b-form-input", {
+                    staticClass: "text-center",
+                    attrs: { type: "text", placeholder: "Buscar Contacto" },
+                    model: {
+                      value: _vm.querySearch,
+                      callback: function($$v) {
+                        _vm.querySearch = $$v
+                      },
+                      expression: "querySearch"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c("contact-list-component", {
-                attrs: { conversations: _vm.conversations },
+                attrs: { conversations: _vm.conversationsFiltered },
                 on: {
                   conversationSelected: function($event) {
                     return _vm.changeActiveConversation($event)
